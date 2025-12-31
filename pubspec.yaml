@@ -1,0 +1,29 @@
+name: maria_medic
+description: "Application de gestion de maladies."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.8.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+  sqflite: ^2.3.0
+  path: ^1.8.3
+  image_picker: ^1.0.4
+  intl: ^0.18.1
+  file_picker: ^10.0.0
+  excel: ^4.0.3
+  path_provider: ^2.1.1
+  share_plus: ^7.2.1
+  permission_handler: ^11.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter:
+  uses-material-design: true
