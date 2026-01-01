@@ -7,6 +7,7 @@ import 'lab_results_screen.dart';
 import 'temperature_screen.dart';
 import 'blood_pressure_screen.dart';
 import 'weight_screen.dart';
+import 'charts_screen.dart';
 import '../services/export_service.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -128,6 +129,16 @@ class HomeScreen extends StatelessWidget {
               () => Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const LabResultsScreen()),
+              ),
+            ),
+             _buildMenuItem(
+              context,
+              'Graphiques',
+              Icons.show_chart,
+              Colors.indigo,
+              () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ChartsScreen()),
               ),
             ),
           ],

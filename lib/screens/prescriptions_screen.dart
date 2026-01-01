@@ -44,7 +44,10 @@ class _PrescriptionsScreenState extends State<PrescriptionsScreen> {
               leading: const Icon(Icons.description, size: 40),
               title: Text(prescription['doctor_name'] ?? 'Ordonnance'),
               subtitle: Text(prescription['date']),
-              trailing: const Icon(Icons.arrow_forward_ios),
+              trailing: IconButton(
+                icon:  const Icon(Icons.delete),
+                onPressed: () => _showConfirmDeleteDialog(prescription['id']),
+                ),
               onTap: () {
                 if (prescription['scan_path'] != null) {
                   _showScanDialog(prescription['scan_path']);
@@ -140,6 +143,30 @@ class _PrescriptionsScreenState extends State<PrescriptionsScreen> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  void _showConfirmDeleteDialog(int id){
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text("Confirmer suppression?"),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Annuler'),
+          ),
+          ElevatedButton(
+            onPressed: () async {
+                  await DatabaseHelper.instance.deletePrescriptionRecord(id);
+                  _loadPrescriptions();
+                  Navigator.pop(context);
+                },
+            child: const Text('supprimer'),
+          ),
+        ],
+
       ),
     );
   }

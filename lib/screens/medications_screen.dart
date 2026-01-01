@@ -54,10 +54,7 @@ class _MedicationsScreenState extends State<MedicationsScreen> {
               isThreeLine: true,
               trailing: IconButton(
                 icon: const Icon(Icons.delete),
-                onPressed: () async {
-                  await DatabaseHelper.instance.deleteMedication(med['id']);
-                  _loadMedications();
-                },
+                onPressed: () => _showConfirmDeleteDialog(med['id'])
               ),
             ),
           );
@@ -158,6 +155,30 @@ class _MedicationsScreenState extends State<MedicationsScreen> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  void _showConfirmDeleteDialog(int id){
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text("Confirmer suppression?"),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Annuler'),
+          ),
+          ElevatedButton(
+            onPressed: () async {
+                  await DatabaseHelper.instance.deleteMedication(id);
+                  _loadMedications();
+                  Navigator.pop(context);
+                },
+            child: const Text('supprimer'),
+          ),
+        ],
+
       ),
     );
   }

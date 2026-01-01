@@ -165,6 +165,11 @@ class DatabaseHelper {
     return await db.query('prescriptions', orderBy: 'date DESC');
   }
 
+  Future<void> deletePrescriptionRecord(int id) async {
+    final db = await instance.database;
+    await db.delete('prescriptions', where: 'id = ?', whereArgs: [id]);
+  }
+
   // Lab Results
   Future<int> insertLabResult(Map<String, dynamic> row) async {
     final db = await instance.database;

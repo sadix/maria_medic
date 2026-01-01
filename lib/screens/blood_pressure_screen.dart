@@ -75,10 +75,8 @@ class _BloodPressureScreenState extends State<BloodPressureScreen> {
               isThreeLine: true,
               trailing: IconButton(
                 icon: const Icon(Icons.delete),
-                onPressed: () async {
-                  await DatabaseHelper.instance.deleteBloodPressureRecord(record['id']);
-                  _loadRecords();
-                },
+                onPressed: () => _showConfirmDeleteDialog(record['id'])
+                
               ),
             ),
           );
@@ -206,6 +204,30 @@ class _BloodPressureScreenState extends State<BloodPressureScreen> {
             child: const Text('Enregistrer'),
           ),
         ],
+      ),
+    );
+  }
+
+  void _showConfirmDeleteDialog(int id){
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text("Confirmer suppression?"),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Annuler'),
+          ),
+          ElevatedButton(
+            onPressed: () async {
+                  await DatabaseHelper.instance.deleteBloodPressureRecord(id);
+                  _loadRecords();
+                  Navigator.pop(context);
+                },
+            child: const Text('supprimer'),
+          ),
+        ],
+
       ),
     );
   }
