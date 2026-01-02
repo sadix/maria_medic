@@ -49,7 +49,7 @@ class _ChartsScreenState extends State<ChartsScreen> {
       } catch (e) {
         return false;
       }
-    }).toList();
+    }).toList().reversed.toList();
   }
 
   @override
