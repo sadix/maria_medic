@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:maria_medic/screens/pdfscreen/pdf_screen.dart';
+import 'package:maria_medic/screens/temperature_screen.dart';
 import 'dart:io';
 import '../database/database_helper.dart';
 
@@ -131,9 +133,14 @@ class _PrescriptionsScreenState extends State<PrescriptionsScreen> {
           mainAxisSize: MainAxisSize.min,
           children: [
             if (path.endsWith('.pdf'))
-              const Padding(
+                Padding(
                 padding: EdgeInsets.all(32.0),
-                child: Icon(Icons.picture_as_pdf, size: 100),
+                child: IconButton(
+                  icon:Icon(Icons.picture_as_pdf, size: 100),
+                  //onPressed:() =>  MaterialPageRoute(builder: (context) => TemperatureScreen()),
+                  onPressed: () => Navigator.push(context,MaterialPageRoute(builder: (context) =>  PDFScreen(path:path,isIPadSafe: true,)))  ,
+                ),
+                
               )
             else
               Image.file(File(path)),

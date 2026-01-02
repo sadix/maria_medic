@@ -19,6 +19,7 @@ dependencies:
   share_plus: ^7.2.1
   permission_handler: ^11.0.1
   fl_chart: ^0.68.0
+  flutter_pdfview: ^1.4.3
 
 dev_dependencies:
   flutter_test:
